@@ -131,11 +131,35 @@
         for (idx, diff) in blockRowColumnTranslation.enumerate() {
             blocks[idx].column = column + diff.columnDiff
             blocks[idx].row = row + diff.rowDiff
+            
+            final func rotateClockwise() {
+                let newOrientation = Orientation.rotate(orientation, clockwise: true)
+                rotateBlocks(newOrientation)
+                orientation = newOrientation
+            }
+            
+            final func rotateCounterClockwise() {
+                let newOrientation = Orientation.rotate(orientation, clockwise: false)
+                rotateBlocks(newOrientation)
+                orientation = newOrientation
+            }
         }
     }
     
     final func lowerShapeByOneRow() {
         shiftBy(0, rows:1)
+        
+        final func raiseShapeByOneRow() {
+            shiftBy(0, rows:-1)
+        }
+        
+        final func shiftRightByOneColumn() {
+            shiftBy(1, rows:0)
+        }
+        
+        final func shiftLeftByOneColumn() {
+            shiftBy(-1, rows:0)
+        }
     }
     
     // #2
